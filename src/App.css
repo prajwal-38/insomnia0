@@ -1,0 +1,438 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #8a2be2; /* Purple */
+  --primary-light: #9d4edd;
+  --primary-dark: #6a0dad;
+  --accent: #ff7eee; /* Pinkish accent */
+  --text-light: #f0f0f0; /* Lighter text for better contrast on dark */
+  --text-dark: #121214;
+  --bg-dark: #13111b; /* Main background */
+  --bg-medium: #201c2b; /* Sidebar, node background */
+  --bg-light: #2d2b3a; /* Header, controls background */
+  --success: #2ecc71; /* Green for success/add */
+  --success-dark: #27ae60;
+  --danger: #e74c3c; /* Red for delete/error */
+  --danger-dark: #c0392b;
+  --warning: #f39c12; /* Orange for warning/snap */
+  --info: #3498db; /* Blue for info/intro */
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Softer shadow */
+  --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.3);
+  --transition: all 0.25s ease-in-out;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+}
+
+body, html, #root {
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  overflow: hidden; /* Prevent body scrollbars */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  position: relative; /* For toast positioning */
+}
+
+.header {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  padding: 0.75rem 1.5rem; /* Adjusted padding */
+  width: 100%;
+  height: 55px; /* Slightly reduced height */
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--primary-dark);
+  box-shadow: var(--shadow);
+  z-index: 100; /* Ensure header is on top */
+}
+
+.main-content {
+  display: flex;
+  flex: 1; /* Take remaining height */
+  width: 100%;
+  overflow: hidden; /* Prevent internal scrollbars if not needed */
+}
+
+.sidebar {
+  background-color: var(--bg-medium);
+  color: var(--text-light);
+  width: 220px; /* Slightly wider sidebar */
+  height: 100%;
+  padding: 1rem;
+  border-right: 1px solid var(--primary-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Increased gap */
+  overflow-y: auto; /* Allow sidebar to scroll if content exceeds height */
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* Consistent gap */
+}
+
+.nav-button, .control-button {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  border: 1px solid transparent;
+  padding: 0.6rem 1rem; /* Adjusted padding */
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-size: 0.9rem; /* Slightly smaller font */
+  text-align: left;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-button:hover, .control-button:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+
+.control-button.delete {
+  background-color: var(--danger);
+}
+.control-button.delete:hover {
+  background-color: var(--danger-dark);
+}
+
+.sidebar-controls {
+  margin-top: 1rem;
+  border-top: 1px solid var(--primary-dark);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.sidebar-controls h4 {
+  margin-bottom: 0.5rem;
+  color: var(--primary-light);
+}
+.control-label {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+.control-label input[type="checkbox"] {
+  accent-color: var(--primary);
+}
+
+
+.content {
+  background-color: var(--bg-dark);
+  flex: 1; /* Take remaining width */
+  height: 100%; /* Ensure content area takes full height of main-content */
+  display: flex; /* Use flex to make canvas take full space */
+  flex-direction: column; /* Stack elements vertically if needed */
+}
+
+.story-web-canvas {
+  flex-grow: 1; /* Canvas takes all available space in content area */
+  border: none; /* Remove border, background handles it */
+  background-color: var(--bg-dark); /* Match overall theme */
+  width: 100%;
+  position: relative; /* For absolute positioning of elements like preview line */
+  outline: none; /* Remove focus outline, or style it */
+}
+
+/* Custom Node Styling */
+.story-node {
+  background-color: var(--bg-medium);
+  border: 1px solid var(--primary);
+  border-radius: var(--border-radius-md);
+  padding: 10px 15px; /* Adjusted padding */
+  min-width: 150px; /* Slightly wider */
+  min-height: 60px; /* Increased min height */
+  text-align: center;
+  box-shadow: var(--shadow);
+  cursor: grab; /* Indicate draggable */
+  user-select: none;
+  z-index: 1;
+  transition: var(--transition);
+  color: var(--text-light);
+  position: relative; /* For badges and buttons */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.story-node:active {
+  cursor: grabbing;
+}
+
+.story-node:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-light);
+  transform: translateY(-2px) scale(1.02); /* Subtle hover effect */
+}
+
+.story-node.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), var(--shadow-hover); /* More prominent selection */
+  transform: scale(1.03);
+}
+
+/* Node type specific styles */
+.story-node.type-entry { border-left: 5px solid var(--success); }
+.story-node.type-scene { border-left: 5px solid var(--primary); }
+.story-node.type-note { border-left: 5px solid var(--warning); }
+.story-node.type-intro { border-left: 5px solid var(--info); } /* New type */
+.story-node.type-outro { border-left: 5px solid var(--danger); } /* New type */
+
+
+/* ReactFlow Connection Line Styling */
+.react-flow__edge-path {
+  stroke: var(--primary-light);
+  stroke-width: 2.5px; /* Slightly thicker */
+  filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.2)); /* Subtle shadow */
+}
+
+/* Style for smoothstep/bezier edges */
+.react-flow__edge.react-flow__edge-type-smoothstep .react-flow__edge-path,
+.react-flow__edge.react-flow__edge-type-default .react-flow__edge-path,
+.react-flow__edge.react-flow__edge-type-custom .react-flow__edge-path { /* Added custom for new edge */
+  stroke: url(#edge-gradient); /* You might want a solid color for custom edges or different styling */
+}
+
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: var(--accent);
+  stroke-width: 3.5px;
+}
+
+/* Define the gradient for edges */
+.react-flow__edges svg defs + #edge-gradient {
+}
+
+.react-flow__handle {
+  width: 10px; /* Larger handles */
+  height: 10px;
+  background-color: var(--primary);
+  border: 2px solid var(--bg-medium); /* Contrast border */
+  border-radius: 50%;
+  transition: var(--transition);
+}
+.react-flow__handle:hover,
+.react-flow__handle-connecting {
+  background-color: var(--accent);
+  transform: scale(1.2);
+  border-color: var(--accent);
+}
+.custom-handle { /* Class for handles on CustomSceneNode */
+}
+
+
+/* ReactFlow Controls and Minimap */
+.react-flow__controls {
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  background-color: var(--bg-light);
+}
+.react-flow__controls-button {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  border: none;
+  border-bottom: 1px solid var(--primary-dark);
+  width: 30px; /* Larger control buttons */
+  height: 30px;
+}
+.react-flow__controls-button:hover {
+  background-color: var(--bg-medium);
+  color: var(--accent);
+}
+.react-flow__controls-button:last-child {
+  border-bottom: none;
+}
+
+.react-flow__minimap {
+  background-color: var(--bg-medium);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow);
+}
+.react-flow__minimap-mask {
+  fill: rgba(var(--primary-rgb, 138, 43, 226), 0.15); /* Use RGB for opacity */
+}
+:root {
+  --primary-rgb: 138, 43, 226; /* For use in rgba */
+}
+
+
+/* Node type badge styles */
+.node-type-badge {
+  position: absolute;
+  top: -10px; /* Positioned slightly above */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem; /* Smaller badge text */
+  padding: 3px 8px; /* Adjusted padding */
+  border-radius: 12px; /* Pill shape */
+  text-transform: uppercase;
+  font-weight: 600; /* Bolder */
+  box-shadow: var(--shadow);
+  z-index: 2; /* Above node */
+}
+
+.node-type-badge.scene { background-color: var(--primary); color: white; }
+.node-type-badge.note { background-color: var(--warning); color: var(--bg-dark); }
+.node-type-badge.entry { background-color: var(--success); color: white; }
+.node-type-badge.intro { background-color: var(--info); color: white; } /* New type */
+.node-type-badge.outro { background-color: var(--danger); color: white; } /* New type */
+
+/* Node inline controls (delete, connect buttons) */
+.node-delete-button, .node-connect-button {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border: none;
+  font-size: 1rem; /* Larger icons */
+  cursor: pointer;
+  opacity: 0.7;
+  transition: var(--transition);
+  padding: 4px; /* Square padding */
+  border-radius: var(--border-radius-sm);
+  z-index: 10;
+  line-height: 1; /* Ensure icon is centered */
+}
+.node-delete-button:hover, .node-connect-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.node-delete-button {
+  top: 5px;
+  right: 5px;
+  color: var(--danger);
+}
+.node-delete-button:hover { background-color: rgba(231, 76, 60, 0.3); }
+
+.node-connect-button {
+  bottom: 5px;
+  right: 5px;
+  color: var(--success);
+}
+.node-connect-button:hover { background-color: rgba(46, 204, 113, 0.3); }
+
+.node-title {
+  margin: 0;
+  padding: 5px 0; /* Add some padding around title */
+  font-size: 0.95rem; /* Slightly larger title */
+  font-weight: 600;
+  cursor: text;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.node-title-input-inline {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  border: 1px solid var(--primary-light);
+  border-radius: var(--border-radius-sm);
+  padding: 4px 6px;
+  font-size: 0.95rem;
+  width: calc(100% - 10px); /* Adjust width to fit padding */
+  margin: 5px auto; /* Consistent with .node-title padding */
+  text-align: center;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+.node-title-input-inline:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb, 255, 126, 238), 0.3);
+}
+:root {
+  --accent-rgb: 255, 126, 238; /* For use in rgba */
+}
+
+
+/* Ensure ReactFlow pane takes up space and is focusable */
+.react-flow__pane {
+  cursor: default; /* Default cursor for pane */
+}
+
+/* SVG definitions for edge gradient */
+.react-flow__edges svg > defs {
+}
+
+/* Hide default node wrapper styles if custom node handles all styling */
+.react-flow__node {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Custom Edge Delete Button Styling */
+.edge-interaction-wrapper {
+  /* This class is on the div wrapping the button in EdgeLabelRenderer */
+}
+
+.edge-delete-button {
+  background-color: var(--danger);
+  color: var(--text-light);
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 20px; /* Center the '×' */
+  text-align: center;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  box-shadow: var(--shadow);
+}
+
+/* Show button when hovering over the edge group */
+/* ReactFlow typically wraps edges in a group with class .react-flow__edge */
+.react-flow__edge:hover .edge-delete-button {
+  opacity: 1;
+}
+
+.edge-delete-button:hover {
+  background-color: var(--danger-dark);
+  transform: scale(1.1);
+}
+
+/* Toast Notification Styling */
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--warning);
+  color: var(--text-dark);
+  padding: 10px 20px;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-hover);
+  z-index: 1001; /* Above header */
+  font-size: 0.9rem;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  10%, 90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}

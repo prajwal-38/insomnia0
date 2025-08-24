@@ -1,0 +1,11 @@
+this file will contain the rough work for insomnia
+
+insomnia is a node based ai video editor powered by ai agents, it helps user create, edit and manage their video projects.
+It can potentially remove the need for a video editor by providing a simple interface to create and edit videos.
+sounds good 
+
+It is powered by ai agents and a dedicated timeline for video editing.
+
+It works by splitting the video into different parts to reducing processing power and tackling the video editing process in a more manageable way.
+
+Each node represents either a scene or an ai agent.
