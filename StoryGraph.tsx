@@ -7,7 +7,6 @@ import ReactFlow, {
   applyEdgeChanges,
   applyNodeChanges,
   Background,
-  Controls,
   MiniMap,
   Node,
   Edge,
@@ -107,7 +106,6 @@ const StoryGraph: React.FC<StoryGraphProps> = ({ scenes }) => {
         fitView
       >
         <MiniMap />
-        <Controls />
         <Background variant="dots" gap={12} size={1} />
       </ReactFlow>
     </div>

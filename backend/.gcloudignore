@@ -1,0 +1,91 @@
+# Ignore development files and directories
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+.pytest_cache/
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Ignore virtual environment
+venv/
+env/
+ENV/
+
+# Ignore local data directories
+temp_video_uploads/
+analyzed_videos_store/
+analysis_data_store/
+exported_videos/
+translated_videos/
+temp_scene_segments/
+
+# Ignore database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Ignore log files
+*.log
+debug.log
+
+# Ignore test files
+test_*.py
+test-*.js
+test-*.mp4
+
+# Ignore audio/video files
+*.mp4
+*.avi
+*.mov
+*.wav
+*.mp3
+*.m4a
+
+# Ignore temporary files
+*.tmp
+*.temp
+*~
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore multi_tool_agent temporary files
+multi_tool_agent/converted_audio_*.wav
+multi_tool_agent/extracted_audio_*.wav
+multi_tool_agent/translated_speech_*.wav
+multi_tool_agent/scene_*.mp4
+multi_tool_agent/videos/
+
+# Keep essential files
+!requirements.txt
+!keyb.json
+!multi_tool_agent/keyb.json
+!main.py
+!database.py
+!models.py
+!video_export.py
+!video_segmentation.py
+!performance_monitor.py
+!migrate_segments.py
+!services/
+!video_analysis/
+!remotion-renderer/package.json
+!remotion-renderer/package-lock.json
+!remotion-renderer/server.js
+!remotion-renderer/composition-generator.js
+!remotion-renderer/*.jsx

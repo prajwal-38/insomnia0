@@ -1,0 +1,26 @@
+# Minimal requirements for basic functionality
+# Use this for faster builds when video processing is not needed
+
+# Build dependencies
+setuptools>=65.0.0
+wheel>=0.38.0
+
+# Web Framework
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
+
+# HTTP Requests
+requests>=2.28.0
+
+# Data Validation
+pydantic>=2.0.0
+
+# System utilities
+python-multipart>=0.0.5
+
+# Google Cloud dependencies
+google-cloud-storage>=2.10.0
+google-auth>=2.20.0
+
+# Environment management
+python-dotenv>=1.0.0

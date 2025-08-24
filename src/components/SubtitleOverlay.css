@@ -1,0 +1,46 @@
+.subtitle-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 80%;
+  text-align: center;
+  /* Debug border to see if overlay is positioned correctly */
+  /* border: 2px solid red; */
+}
+
+.subtitle-text {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  max-width: 100%;
+  word-wrap: break-word;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Ensure high visibility */
+  min-height: 20px;
+  min-width: 50px;
+}
+
+/* Responsive subtitle sizing */
+@media (max-width: 768px) {
+  .subtitle-text {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .subtitle-text {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}
