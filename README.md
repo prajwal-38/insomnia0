@@ -8,6 +8,8 @@
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?logo=fastapi)](https://fastapi.tiangolo.com/)
 
+Live demo at https://insomniav23.vercel.app (Note : It is a bit unstable at the moment)
+
 ## Overview
 
 Insomnia is a revolutionary video editing platform that combines the power of artificial intelligence with professional-grade editing tools. Upload your video, let AI automatically segment it into scenes, and apply specialized AI agents through an intuitive visual interface.
