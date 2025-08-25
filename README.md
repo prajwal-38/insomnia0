@@ -54,6 +54,11 @@ Insomnia is a revolutionary video editing platform that combines the power of ar
 └─────────────────┘    └──────────────────┘    └─────────────────┘
 ```
 
+### Flow Chart
+
+![WhatsApp Image 2025-08-24 at 22 33 39_421f9849](https://github.com/user-attachments/assets/9db47596-73dd-4b8a-93d5-8ce12c096504)
+
+
 ### AI Agent Types
 - **🎬 Video Enhancer** - Quality improvement and stabilization
 - **🎵 Audio Processor** - Noise reduction and enhancement
