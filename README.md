@@ -8,11 +8,11 @@
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?logo=fastapi)](https://fastapi.tiangolo.com/)
 
-## 🚀 Overview
+## Overview
 
 Insomnia is a revolutionary video editing platform that combines the power of artificial intelligence with professional-grade editing tools. Upload your video, let AI automatically segment it into scenes, and apply specialized AI agents through an intuitive visual interface.
 
-### ✨ Key Features
+### Key Features
 
 - **🤖 Intelligent Scene Detection** - Automatic video segmentation using AI and computer vision
 - **🎯 AI Agent System** - 11 specialized agents for different editing tasks
@@ -24,16 +24,16 @@ Insomnia is a revolutionary video editing platform that combines the power of ar
 ## 📸 Screenshots
 
 ### Story Web Interface
-*[Screenshot placeholder - Visual node-based interface showing AI agents connected to video scenes]*
+<img width="1810" height="835" alt="Screenshot 2025-08-25 052754" src="https://github.com/user-attachments/assets/0a97b792-d316-4e12-a638-265e4a2db2d1" />
+
 
 ### Timeline Editor
-*[Screenshot placeholder - Professional timeline interface with tracks and editing tools]*
+<img width="1829" height="904" alt="image" src="https://github.com/user-attachments/assets/61ec42ad-2d1d-4477-ba9e-fec226aa6603" />
+
 
 ### AI Agent Panel
-*[Screenshot placeholder - Minimalistic AI agents selection panel]*
+<img width="1328" height="918" alt="image" src="https://github.com/user-attachments/assets/db2d6f13-26c6-440d-94f7-7b43ef75ea97" />
 
-### Scene Analysis Results
-*[Screenshot placeholder - Video analysis results showing detected scenes]*
 
 ## 🏗️ Architecture
 
