@@ -205,7 +205,7 @@ We welcome contributions! Please follow these steps:
 
 This project is licensed under the MIT License. Do whatever with it
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **PySceneDetect** for scene detection algorithms
 - **Google Cloud** for AI services
