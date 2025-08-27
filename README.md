@@ -203,7 +203,7 @@ We welcome contributions! Please follow these steps:
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. Do whatever with it
 
 ## 🙏 Acknowledgments
 
@@ -212,6 +212,7 @@ This project is licensed under the MIT License.
 - **React Flow** for visual node interface
 - **Remotion** for video rendering capabilities
 - **FFmpeg** for video processing foundation
+- **Designcombo** for Timeline
 
 ---
 
