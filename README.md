@@ -8,7 +8,6 @@
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?logo=fastapi)](https://fastapi.tiangolo.com/)
 
-Live demo at https://insomniav23.vercel.app (Note : It is a bit unstable at the moment)
 
 ## Overview
 
